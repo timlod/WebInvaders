@@ -23,6 +23,7 @@ try {
     if (password_verify($pw, $readPW)) { 
         $_SESSION['logged_in'] = true;
         $_SESSION['name'] = $name;
+       
         header('Location: game.html');
     } else {
         echo "PW OR USER NAME WRONG";
