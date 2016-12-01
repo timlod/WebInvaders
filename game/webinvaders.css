@@ -1,0 +1,5 @@
+body{ margin: 0px; }
+canvas {
+    position: absolute;
+    background-color: black;
+    }
