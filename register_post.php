@@ -7,22 +7,31 @@ try {
     $dbh = Database::getInstance();
     $name = filter_input(INPUT_POST, 'name');
 
-    $pw = password_hash(filter_input(INPUT_POST, 'pw'), PASSWORD_BCRYPT);
-    $range = array(
-        'options' => array('min_range' => 1, 'max_range' => 6)
-    );
-    $grade = filter_input(INPUT_POST, 'grade', FILTER_VALIDATE_INT, $range);
+    $pw = password_hash(filter_input(INPUT_POST, 'password'), PASSWORD_BCRYPT);
 
-    if ($grade == FALSE || $grade == NULL) {
-        echo "INVALID INPUT";
-    } else {
-        $insert = $dbh->prepare("INSERT INTO `user`(`name`, `password`, `grade`) "
-                . "VALUES (:name, :pw, :grade)");
+    $nameAvailable = TRUE;
+    
+    $select = $dbh->prepare("SELECT `name` FROM `user`  WHERE `name` = :name");
+    $select->bindParam(':name', $name);
+    $select->execute();
+    if($select->rowCount() > 0){
+        $nameAvailable = FALSE;
+    } 
+    $select = null;
+    if($nameAvailable === TRUE){
+        $insert = $dbh->prepare("INSERT INTO `user`(`name`, `password`) VALUES (:name, :pw)");
         $insert->bindParam(':name', $name);
         $insert->bindParam(':pw', $pw);
-        $insert->bindParam(':grade', $grade);
         $insert->execute();
         $insert = null;
+        
+        session_start();
+        $_SESSION['logged_in'] = true;
+        $_SESSION['name'] = $name;
+        $_SESSION['grade'] = $grade;
+        header('Location: game.html');
+    } else {
+        header('Location: register.html');
     }
     $dbh = null;
 } catch (PDOException $e) {
