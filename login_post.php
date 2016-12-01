@@ -1,7 +1,7 @@
 <?php
 
 require 'lib/Database.class.php';
-
+ session_start();
 const name = "Name";
 const pw = "pw";
 try {
@@ -19,17 +19,16 @@ try {
     while($row = $select->fetch()){
        $readPW = $row['password'];
     }
-  
+    
     if (password_verify($pw, $readPW)) { 
-        session_start();
         $_SESSION['logged_in'] = true;
         $_SESSION['name'] = $name;
-        header('Location: userdata.php');
+        header('Location: game.html');
     } else {
         echo "PW OR USER NAME WRONG";
     }
     
-    $insert = null;
+    $select = null;
 
     $dbh = null;
 } catch (PDOException $e) {
