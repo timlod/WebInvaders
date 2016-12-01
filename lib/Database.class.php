@@ -14,7 +14,7 @@
 class Database {
 
     private static $instance;
-    private static $dsn = 'mysql:dbname=saw;host=127.0.0.1';
+    private static $dsn = 'mysql:dbname=WebInvaders;host=127.0.0.1';
     private static $user = 'root';
     private static $password = 'root';
 
