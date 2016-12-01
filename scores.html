@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="favicon.ico">
 
     <title>Web Invaders</title>
 
@@ -18,7 +18,7 @@
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="css/jumbotron.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -33,8 +33,7 @@
 
   <body>
 
-      
-      <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -45,29 +44,39 @@
           </button>
           <a class="navbar-brand" href="index.html">Web Invaders</a>
         </div>
-       
+        <div id="navbar" class="navbar-collapse collapse">
+          <form  action="login_post.php" method="post" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="user" name="user" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" name="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
-    <div class="container">
+   
+      
+      <!-- Table belongs here -->
 
-      <form method="post" action="register_post.php" class="form-signin">
-        <h2 class="form-signin-heading">Please register</h2>
-        <label for="text" class="sr-only">User Name</label>
-        <input type="text" id="userName" class="form-control" placeholder="User Name" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="passwort" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-         
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-      </form>
+     
 
-    </div> <!-- /container -->
+      <footer  class="footer navbar-fixed-bottom text-center">
+          <p>With <span class="glyphicon glyphicon-heart"></span> by DKE.</p>
+      </footer>
+   
+    
 
-       
 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
