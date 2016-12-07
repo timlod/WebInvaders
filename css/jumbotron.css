@@ -2,14 +2,18 @@
 body {
   padding-top: 50px;
   padding-bottom: 20px;
+  background-color: #242422;
+  color: white !important;
 }
 
 .jumbotron {
     background-image: url("../img/space.jpg");
     background-color: #17234E;
     color: white !important;
+    padding: 8em inherit;
     margin-bottom: 0;
     min-height: 50%;
+    
     background-repeat: no-repeat;
     background-position: center;
     -webkit-background-size: cover;
