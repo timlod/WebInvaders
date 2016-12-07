@@ -14,9 +14,9 @@
 class Database {
 
     private static $instance;
-    private static $dsn = 'mysql:dbname=WebInvaders;host=127.0.0.1';
+    private static $dsn = 'mysql:dbname=WebInvaders;host=localhost';
     private static $user = 'root';
-    private static $password = 'root';
+    private static $password = '';
 
     public static function getInstance() {
         if (null === self::$instance) {
