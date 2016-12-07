@@ -3,3 +3,15 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+.jumbotron {
+    background-image: url("../img/space.jpg");
+    background-color: #17234E;
+    color: white !important;
+    margin-bottom: 0;
+    min-height: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
