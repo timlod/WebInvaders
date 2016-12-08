@@ -6,7 +6,7 @@ $(function () {
 
 
     function addPoint(point) {
-        console.log(point);
+        // console.log(point);
         var li = $('<li></li>');
 
         $('<span></span>').append(point.name).append(" ").append(point.score).appendTo(li);
@@ -15,9 +15,10 @@ $(function () {
     }
 
     function loadAll() {
-        $.getJSON('getHighscore.php?show=all',
-                function (list) {
 
+        $.getJSON('getHighscore.php?show=player',
+                function (list) {
+                    console.log(list);
                     for (var i = 0; i < list.length; i++) {
                         addPoint(list[i]);
                     }
