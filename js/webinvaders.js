@@ -11,16 +11,16 @@ $(function(){
         this.enemy = [];
         for (i=0; i<15; i++){
             this.enemy[i] = new Image();
-            this.enemy[i].src = "svg/enemy" + i + ".svg";
+            this.enemy[i].src = "img/svg/enemy" + i + ".svg";
         }
 
         this.color = ['#43978d', '#03bfd7', '#8dc63f', '#fdb913', '#ba9765', '#82ca9c', '#92278f', '#ed1c24', '#39b54a', '#fd0', '#0072bc', '#ec008c', '#f26522', '#bf245e', '#522e91'];
 
         this.player = new Image();
-        this.player.src = "svg/player.svg";
+        this.player.src = "img/svg/player.svg";
 
         this.bullet = new Image();
-        this.bullet.src = "svg/bullet.svg";
+        this.bullet.src = "img/svg/bullet.svg";
     }
 
     /*=========== Canvas Context ============*/
@@ -273,7 +273,7 @@ $(function(){
         size = 25;
         margin = 10;
         for (i=0; i<LIVES; i++){
-            ctx.drawImage(img.player, size + (size+margin)*i, size, size, size*0.8);
+            ctx.drawImage(img.player, margin + (size+margin)*i, margin, size, size*0.8);
         }
     }
 
@@ -289,6 +289,9 @@ $(function(){
         ctx.font = "100px Courier";
         ctx.textAlign = "center";
         ctx.fillText("Game Over", WIDTH/2, HEIGHT/2-150);
+        ctx.font = "200px Courier";
+        ctx.textAlign = "center";
+        ctx.fillText(SCORE, WIDTH/2, HEIGHT/2);
     }
 
 
@@ -334,6 +337,7 @@ $(function(){
     }
 
     function draw(){
+        ctx.fillStyle = "rgb(0,0,0)";
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
         draw_lives();
         draw_score();
