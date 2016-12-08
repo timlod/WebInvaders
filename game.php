@@ -12,23 +12,19 @@ $dbh = Database::getInstance();
 $action = isset($_GET['show']) ? $_GET['show'] : '';
 
 if ($action === 'highestScore' && $_SESSION['logged_in'] === true) {
-    $id = -1;
-    $select = $dbh->prepare("SELECT `id` FROM `user`  WHERE `name` = :name");
+    $select = $dbh->prepare("SELECT * FROM `user` AS u
+INNER JOIN `score` AS s ON u.`id` = s.`userId`
+WHERE u.`name` = :name
+ORDER BY s.`score` DESC LIMIT 1");
+
     $select->bindParam(':name', $name);
     $select->execute();
     while ($row = $select->fetch()) {
-        $id = $row['id'];
-    }
-    if ($id > -1) {
-        $select = $dbh->prepare("SELECT `score` FROM `score` WHERE `userId` = :id ORDER BY `score` DESC LIMIT 1");
-        $select->bindParam(':id', $id);
-        $select->execute();
-        while ($row = $select->fetch()) {
-            $scores = $row['score'];
-        }
+        $scores = $row['score'];
     }
     $select = null;
     echo json_encode($scores);
+
 }
 
 if ($action === 'name' && $_SESSION['logged_in'] === true) {
