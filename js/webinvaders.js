@@ -350,6 +350,7 @@ $(function(){
 
         if (LIVES == 0) {
             draw_game_over();
+            addScore(SCORE);
         }
     }
 
@@ -369,5 +370,11 @@ $(function(){
     }
 
     img.player.onload = init();
-    
+
+    /*================ Write scores to DB ===============*/
+    function addScore(score) {
+        $.post('game.php?addHighscore=new', {score: score})
+            .done(function (data) {
+            });
+    }
 });

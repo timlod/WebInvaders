@@ -4,9 +4,9 @@ $(function () {
         $.getJSON('game.php?show=name',
             function (name) {
                 // console.log(name);
-                if(name == null) {
+                if (name == null) {
                     $("#userName").append("No Name");
-                }else {
+                } else {
                     $("#userName").append(name);
                 }
 
@@ -15,9 +15,9 @@ $(function () {
         $.getJSON('game.php?show=highestScore',
             function (score) {
                 // console.log(score);
-                if(score == null) {
+                if (score == null) {
                     $("#highScore").append(0);
-                }else {
+                } else {
                     $("#highScore").append(score);
                 }
             });
@@ -26,10 +26,8 @@ $(function () {
 
     function addScore(score) {
         // console.log("want to add score");
-        $.post('game.php?addHighscore=new', { score: score })
-            .done(function(data) {
-                // console.log(data)
-               // console.log("added score");
+        $.post('game.php?addHighscore=new', {score: score})
+            .done(function (data) {
             });
 
         return false;
