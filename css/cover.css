@@ -10,8 +10,9 @@ a:hover {
 }
 
 #centeredNav{
-    width: 200px;
+
     margin: 0 auto;
+  white-space: nowrap;
 }
 
 
