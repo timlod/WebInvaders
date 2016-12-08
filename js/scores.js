@@ -3,6 +3,9 @@ $(function () {
 
     var listNode = $('#list');
 
+    $('#global').click(loadAll);
+
+    $('#personal').click(loadPlayer);
 
 
     function addPoint(point) {
@@ -15,17 +18,38 @@ $(function () {
     }
 
     function loadAll() {
-
-        $.getJSON('getHighscore.php?show=player',
-                function (list) {
-                    console.log(list);
-                    for (var i = 0; i < list.length; i++) {
-                        addPoint(list[i]);
-                    }
-                });
+        listNode.empty();
+        $.getJSON('getHighscore.php?show=all',
+        function (list) {
+            console.log(list);
+            for (var i = 0; i < list.length; i++) {
+                addPoint(list[i]);
+            }
+        });
     }
 
+    function loadPlayer() {
+        listNode.empty();
+        $.getJSON('getHighscore.php?show=player',
+        function (list) {
+            console.log(list);
+            for (var i = 0; i < list.length; i++) {
+                addPoint(list[i]);
+            }
+        });
+    }
 
-    loadAll();
-
+    $.getJSON('log.php?show=log',
+    function(log) {
+        console.log(log['login']);
+        if (log['login']) {
+            loadPlayer();
+            $('#navbar').addClass('hidden');
+            $('#navbar-right').removeClass('hidden');
+        } else {
+            loadAll();
+            $('#navbar').removeClass('hidden');
+            $('#navbar-right').addClass('hidden');
+        }
+    });
 });

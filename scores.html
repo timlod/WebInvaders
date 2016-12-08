@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Web Invaders</title>
+    <title>Highscores</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,10 +18,10 @@
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet"> 
+    <link href="css/jumbotron.css" rel="stylesheet">
     <link href="css/cover.css" rel="stylesheet">
     <link href="css/extra.css" rel="stylesheet">
-    
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
@@ -29,51 +29,67 @@
     <script type="text/javascript" src="js/scores.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html">Web Invaders</a>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Web Invaders</a>
+            </div>
+            <div id="navbar" class="">
+                <form  action="login_post.php" method="post" class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="user" name="user" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" name="password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                </form>
+            </div><!--/.navbar-collapse -->
+            <div id="navbar-right" class="hidden">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" id="userName"></a>
+                    </li>
+                    <li><a href="game.html" id="play">Play!</a></li>
+
+                    <form action="logout.php" method="post" class="navbar-form navbar-right">
+                        <button type="submit" class="btn btn-success" id="logout">Logout</button>
+                    </form>
+                </ul>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form  action="login_post.php" method="post" class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="user" name="user" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" name="password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
     </nav>
 
-   
-      
-      <!-- Table belongs here -->
-      <h2> Top 10:</h2><br>
-      <ol id="list"></ol>
 
-     
 
-      <footer  class="footer navbar-fixed-bottom text-center">
-          <p>With <span class="glyphicon glyphicon-heart"></span> by DKE.</p>
-      </footer>
-   
-    
+    <!-- Table belongs here -->
+    <div id="t10">
+        <ul>
+            <a href="#personal" id="personal">Personal</a>
+            <a href="#global" id="global">Global</a>
+        </ul>
+    </div>
+    <h2> Top 10:</h2><br>
+    <ol id="list"></ol>
+
+    <footer  class="footer navbar-fixed-bottom text-center">
+        <p>With <span class="glyphicon glyphicon-heart"></span> by DKE.</p>
+    </footer>
+
+
 
 
     <!-- Bootstrap core JavaScript
@@ -83,5 +99,5 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+</body>
 </html>
