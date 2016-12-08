@@ -75,7 +75,7 @@ $(function(){
         }
     }
 
-    function EnemyArray(i, x, y, h, v, n, m) {
+    function EnemyArray(i, x, y, h, v, n, m, s) {
         this.enemy = [];
         this.x = x;
         this.y = y;
@@ -84,7 +84,7 @@ $(function(){
         
 
         // Movement
-        this.speed = 2;
+        this.speed = s;
         this.lastDirection = 'right';
         this.direction = 'right';
         this.down_distance = v/m;
@@ -154,7 +154,8 @@ $(function(){
     function random_enemy_array(){
         x = rint(6) + 2; h = (rint(25) + 25) * x;
         y = rint(4) + 2; v = (rint(25) + 25) * y;
-        return new EnemyArray(rint(15), 50, 50, h, v, x, y);
+        s = Math.random()*3 + 0.5;
+        return new EnemyArray(rint(15), 50, 50, h, v, x, y, s);
     }
 
     function draw_score(){
