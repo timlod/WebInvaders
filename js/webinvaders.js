@@ -53,6 +53,60 @@ $(function(){
         if (event.keyCode == 32) input.shoot = false;
     });
 
+    /*============= Explosions ==============*/
+    particleArray = [];
+
+    function Particle(x,y,s,vx,vy){
+        damping = 0.99;
+        gravity = 0.01;
+
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
+
+        this.size = s;
+        this.color = "rgb("+ rint(255) + "," + rint(170) + "," + rint(150) +")";
+
+        particleArray[particleArray.length] = this;
+
+        this.update = function() {
+            this.vx *= damping;
+            this.vy *= damping;
+            this.vy += gravity * size;
+
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.y > HEIGHT) particleArray.splice(particleArray.indexOf(this), 1);
+        }
+
+        this.draw = function() {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x-this.size/2, this.y-this.size/2, this.size, this.size);
+        }
+    }
+
+    function explosion(x,y){
+        n = 100;
+        for (i=0; i<n; i++){
+            s = Math.random() * 4 + 1;
+            a = Math.random() * 2;
+            d = Math.random() * 2 * Math.PI;
+            new Particle(x,y,s, a * Math.cos(d), a * Math.sin(d) - 2);
+        }
+    }
+
+    function playerExplosion(x,y){
+        n = 1000;
+        for (i=0; i<n; i++){
+            s = Math.random() * 10 + 5;
+            a = Math.random() * 5;
+            d = Math.random() * 2 * Math.PI;
+            new Particle(x,y,s, a * Math.cos(d), a * Math.sin(d) - a);
+        }
+    }
+
     /*============= Game Objects ============*/
     bulletArray = [];
     enemyBulletArray = [];
@@ -158,6 +212,7 @@ $(function(){
         this.kill = function() {
             SCORE += 100;
             this.dead = true;
+            explosion(this.x, this.y);
         }
 
         this.draw = function(){
@@ -328,8 +383,11 @@ $(function(){
             if (player.intersect(bullet.x, bullet.y)){
                 bullet.destroy();
                 LIVES--;
+                playerExplosion(player.x,player.y);
             }
         }
+
+        
 
         if (enemy_array.dead()) enemy_array = random_enemy_array();
 
@@ -348,6 +406,8 @@ $(function(){
         enemy_array.draw();
         player.draw();
 
+        
+
         if (LIVES == 0) {
             draw_game_over();
             addScore(SCORE);
@@ -360,8 +420,10 @@ $(function(){
         if (LIVES > 0) {
             update();
             draw();
-        requestAnimationFrame(loop);
         }
+        for (particle of particleArray) particle.update();
+        for (particle of particleArray) particle.draw();
+        requestAnimationFrame(loop);
     }
 
     function init(){ 
