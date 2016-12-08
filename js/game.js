@@ -3,6 +3,7 @@ $(function () {
     function init() {
         $.getJSON('game.php?show=name',
             function (name) {
+                console.log(name);
                 if(name == null) {
                     $("#userName").append("No Name");
                 }else {
@@ -10,8 +11,10 @@ $(function () {
                 }
 
             });
+        console.log("yo");
         $.getJSON('game.php?show=highestScore',
             function (score) {
+                console.log(score);
                 if(score == null) {
                     $("#highScore").append(0);
                 }else {
@@ -34,6 +37,6 @@ $(function () {
 
 
     init();
-    // addScore(236);
+    addScore(236);
 
 });
