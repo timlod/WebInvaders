@@ -3,7 +3,6 @@ require 'lib/Database.class.php';
 session_start();
 if (!isset($_SESSION['list'])) {
     $_SESSION['list'] = array();
-    $_SESSION['maxId'] = 0;
 }
 
 $scores;
@@ -21,19 +20,18 @@ if ($action === 'highestScore' && $_SESSION['logged_in'] === true) {
         $id = $row['id'];
     }
     if ($id > -1) {
-        $select = $dbh->prepare("SELECT `userId`, `score` FROM `score` WHERE `userId` = :id ORDER BY `score` LIMIT 1");
+        $select = $dbh->prepare("SELECT `score` FROM `score` WHERE `userId` = :id ORDER BY `score` LIMIT 1");
         $select->bindParam(':id', $id);
         $select->execute();
         while ($row = $select->fetch()) {
-            $scores[] = $row;
+            $scores = $row['score'];
         }
     }
     $select = null;
-    echo json_encode(array_values($scores[0]));
+    echo json_encode($scores);
 }
 
 if ($action === 'name' && $_SESSION['logged_in'] === true) {
-
     echo json_encode($name);
 }
 
