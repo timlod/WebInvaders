@@ -3,6 +3,7 @@ $(function () {
     function init() {
         $.getJSON('game.php?show=name',
             function (name) {
+                console.log(name);
                 $("#userName").append(name);
             });
         $.getJSON('game.php?show=highestScore',
