@@ -34,8 +34,9 @@ if ($action === 'highestScore' && $_SESSION['logged_in'] === true) {
 if ($action === 'name' && $_SESSION['logged_in'] === true) {
     echo json_encode($name);
 }
-//$action = isset($_GET['show']) ? $_GET['show'] : '';
-if ($action === 'addHighscore' && $_SESSION['logged_in'] === true) {
+$action = isset($_GET['addHighscore']) ? $_GET['addHighscore'] : '';
+if ($action === 'new' && $_SESSION['logged_in'] === true) {
+    $score = $_POST['score'];
     $id = -1;
     $select = $dbh->prepare("SELECT `id` FROM `user`  WHERE `name` = :name");
     $select->bindParam(':name', $name);
@@ -45,14 +46,10 @@ if ($action === 'addHighscore' && $_SESSION['logged_in'] === true) {
     }
     if ($id > -1) {
         $select = $dbh->prepare("INSERT INTO `score`(`userId`, `score`) VALUES (:id, :score)");
-
         $select->bindParam(':id', $id);
         $select->bindParam(':score', $score);
         $select->execute();
-//        while ($row = $select->fetch()) {
-//            $scores = $row['score'];
-//        }
     }
     $select = null;
-    echo json_encode($scores);
+    echo 1;
 }
