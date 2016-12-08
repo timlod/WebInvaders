@@ -20,7 +20,7 @@ if ($action === 'highestScore' && $_SESSION['logged_in'] === true) {
         $id = $row['id'];
     }
     if ($id > -1) {
-        $select = $dbh->prepare("SELECT `score` FROM `score` WHERE `userId` = :id ORDER BY `score` LIMIT 1");
+        $select = $dbh->prepare("SELECT `score` FROM `score` WHERE `userId` = :id ORDER BY `score` DESC LIMIT 1");
         $select->bindParam(':id', $id);
         $select->execute();
         while ($row = $select->fetch()) {

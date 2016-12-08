@@ -7,8 +7,11 @@ $(function () {
             });
         $.getJSON('game.php?show=highestScore',
             function (score) {
-                console.log(score);
-                $("#highScore").append(score);
+                if(score == null) {
+                    $("#highScore").append(0);
+                }else {
+                    $("#highScore").append(score);
+                }
             });
     }
     init();
