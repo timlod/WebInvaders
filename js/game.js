@@ -3,7 +3,7 @@ $(function () {
     function init() {
         $.getJSON('game.php?show=name',
             function (name) {
-                console.log(name);
+                // console.log(name);
                 if(name == null) {
                     $("#userName").append("No Name");
                 }else {
@@ -11,10 +11,10 @@ $(function () {
                 }
 
             });
-        console.log("yo");
+        // console.log("yo");
         $.getJSON('game.php?show=highestScore',
             function (score) {
-                console.log(score);
+                // console.log(score);
                 if(score == null) {
                     $("#highScore").append(0);
                 }else {
@@ -25,11 +25,11 @@ $(function () {
 
 
     function addScore(score) {
-        console.log("want to add score");
+        // console.log("want to add score");
         $.post('game.php?addHighscore=new', { score: score })
             .done(function(data) {
-                console.log(data)
-               console.log("added score");
+                // console.log(data)
+               // console.log("added score");
             });
 
         return false;
@@ -37,6 +37,6 @@ $(function () {
 
 
     init();
-    addScore(236);
+    // addScore(236);
 
 });
