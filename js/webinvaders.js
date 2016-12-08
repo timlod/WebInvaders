@@ -421,7 +421,6 @@ $(function(){
             update();
             draw();
         }
-        
         for (particle of particleArray) particle.update();
         for (particle of particleArray) particle.draw();
         requestAnimationFrame(loop);
